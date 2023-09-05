@@ -1,51 +1,34 @@
-// const { Command } = require("commander");
-// const figlet = require("figlet");
-//
-// const program = new Command();
-//
-// console.log(figlet.textSync("til_tracker"));
-//
-// program
-//     .name("til_tracker")
-//     .version("Name: til_tracker | Version: 1.0.0\"")
-//     .description("CLI for processing input .txt file(s) into generated .html file(s)")
-//     .argument("fileName or folderName", ".txt file you want to convert to .html file or directory containing .txt files you wish to convert")
-//     .parse(process.argv);
-//
-//
-// const options = program.opts();
-
-var pjson = require("../package.json");
-var folder = require("./modules/readFolder");
-var file = require("./modules/readFile");
+const appInfo = require("../package.json");
+const folder = require("./modules/readFolder");
+const file = require("./modules/readFile");
 var path = require("path");
-const fs = require("fs");
-const chalk = require("chalk");
-var cssLink = "";
+var fs = require("fs");
+var chalk = require("chalk");
+let cssLink = "";
 
 const argv = require("yargs")
-    .usage("Usage: $0 --input <'filename'>  [-s <'css-link'>]")
+    .usage("Usage: $0 --input <filename>  [-s <css-link>]")
+    .alias("v", "version")
+    .version(appInfo.name + " " + appInfo.version)
     .option("i", {
         alias: "input",
-        describe: ".txt file name",
+        describe: ".txt File Name",
         type: "string",
         demandOption: true,
     })
+    .option("o", {
+        alias: "output",
+        describe: "Result Directory",
+        type: "string",
+        demandOption: false,
+    })
     .option("s", {
         alias: "stylesheet",
-        describe: "css link",
+        describe: "CSS Link",
         default: "",
         type: "string",
         demandOption: false,
     })
-    .option("o", {
-        alias: "output",
-        describe: "store output directory",
-        type: "string",
-        demandOption: false,
-    })
-    .alias("v", "version")
-    .version(pjson.name + " " + pjson.version)
     .alias("h", "help")
     .help().argv;
 
@@ -53,22 +36,21 @@ if (argv.stylesheet !== "") {
     cssLink = argv.stylesheet;
 }
 
-// delete output folder "dist" if it exists then create new one
-const htmlContainer = "./dist";
-if (!fs.existsSync(htmlContainer)) {
-    fs.mkdirSync(htmlContainer);
+// delete output folder if it exists then create a new one
+const outputFolder = "./dist";
+if (!fs.existsSync(outputFolder)) {
+    fs.mkdirSync(outputFolder);
 } else {
-    fs.rmdirSync(htmlContainer, { recursive: true }, (err: any) => {
+    fs.rm(outputFolder, { recursive: true }, (err: any) => {
         if (err) {
             throw err;
         }
     });
-
-    fs.mkdirSync(htmlContainer);
-    console.log(chalk.bold.green('dist folder is created successfully!'));
+    fs.mkdirSync(outputFolder);
+    console.log(chalk.bold.green('Output folder(til_tracker) is successfully created!'));
 }
 
-// check input path status
+// check if input is an individual file or directory
 fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
         console.error(err);
@@ -76,10 +58,10 @@ fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => an
     }
 
     if (stats.isDirectory()) {
-        folder.readFolder(argv.input, cssLink, htmlContainer);  // folder
+        folder.readFolder(argv.input, cssLink, outputFolder);
     } else if (stats.isFile() && path.extname(argv.input) === ".txt") {
-        file.readFile(argv.input, cssLink, htmlContainer);      // file
+        file.readFile(argv.input, cssLink, outputFolder);
     } else {
-        console.log("Invalid file extension, it should be .txt");
+        console.error("Error: file extension should be .txt");
     }
 });

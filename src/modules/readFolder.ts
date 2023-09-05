@@ -1,5 +1,6 @@
+var fs = require("fs");
 var fileModule = require("./readFile");
-var html = require("./generateHTML");
+var html = require("./convertToHTML");
 var body = "";
 
 module.exports.readFolder = function (path: any, cssLink: any, outputContainer: any) {
@@ -22,7 +23,7 @@ module.exports.readFolder = function (path: any, cssLink: any, outputContainer: 
         });
 
         // create index.html
-        html.generateHTML(
+        html.convertToHTML(
             "index",
             cssLink,
             `<h4>Generated Sites</h4>\n${body}`,

@@ -1,4 +1,5 @@
-var html = require("./generateHTML");
+var fs = require("fs");
+var html = require("./convertToHTML");
 var path = require("path");
 var body = "";
 
@@ -15,6 +16,6 @@ module.exports.readFile = function (inputPath: any, cssLink: any, outputContaine
 
     var title = path.basename(inputPath, ".txt");
 
-    html.generateHTML(title, cssLink, body, outputContainer);
+    html.convertToHTML(title, cssLink, body, outputContainer);
     return title;
 };

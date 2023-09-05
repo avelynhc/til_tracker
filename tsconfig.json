@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "til_tracker",
+    "outDir": "dist",
     "strict": true,
     "target": "es6",
     "module": "commonjs",

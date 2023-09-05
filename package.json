@@ -20,11 +20,9 @@
   "homepage": "https://github.com/avelynhc/til_tracker#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "commander": "^11.0.0",
     "create-html": "^4.1.0",
-    "figlet": "^1.6.0",
-    "node": "^20.5.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",

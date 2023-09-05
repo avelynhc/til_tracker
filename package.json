@@ -1,0 +1,30 @@
+{
+  "name": "til_tracker",
+  "version": "1.0.0",
+  "description": "Command-line tool processing input .txt files into generated .html files.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avelynhc/til_tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avelynhc/til_tracker/issues"
+  },
+  "homepage": "https://github.com/avelynhc/til_tracker#readme",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "figlet": "^1.6.0",
+    "node": "^20.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "typescript": "^5.2.2"
+  }
+}

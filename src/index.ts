@@ -1,13 +1,12 @@
+import path from "path";
+import fs from "fs";
 const appInfo = require("../package.json");
-const folder = require("./modules/readFolder");
-const file = require("./modules/readFile");
-var path = require("path");
-var fs = require("fs");
-var chalk = require("chalk");
+const folder = require("./helper/readFolder");
+const file = require("./helper/readFile");
 let cssLink = "";
 
 const argv = require("yargs")
-    .usage("Usage: $0 --input <filename>  [-s <css-link>]")
+    .usage("Usage: $0 -i <txtFilename>  [-s <css-link>]")
     .alias("v", "version")
     .version(appInfo.name + " " + appInfo.version)
     .option("i", {
@@ -15,12 +14,6 @@ const argv = require("yargs")
         describe: ".txt File Name",
         type: "string",
         demandOption: true,
-    })
-    .option("o", {
-        alias: "output",
-        describe: "Result Directory",
-        type: "string",
-        demandOption: false,
     })
     .option("s", {
         alias: "stylesheet",
@@ -36,19 +29,16 @@ if (argv.stylesheet !== "") {
     cssLink = argv.stylesheet;
 }
 
-// delete output folder if it exists then create a new one
+// check if outputFolder already exists and remove existing folder for containing the latest output
 const outputFolder = "./dist";
 if (!fs.existsSync(outputFolder)) {
     fs.mkdirSync(outputFolder);
 } else {
-    fs.rm(outputFolder, { recursive: true }, (err: any) => {
-        if (err) {
-            throw err;
-        }
-    });
+    fs.rmSync(outputFolder, { recursive: true, force: true });
+    console.log('Existing folder was successfully removed');
     fs.mkdirSync(outputFolder);
-    console.log(chalk.bold.green('Output folder(til_tracker) is successfully created!'));
 }
+console.log('Output folder is successfully created!');
 
 // check if input is an individual file or directory
 fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {

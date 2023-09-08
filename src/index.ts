@@ -3,28 +3,29 @@ import fs from "fs";
 const appInfo = require("../package.json");
 const folder = require("./helper/readFolder");
 const file = require("./helper/readFile");
-let cssLink = "";
+const yargs = require("yargs");
 
-const argv = require("yargs")
-    .usage("Usage: $0 -i <txtFilename>  [-s <css-link>]")
-    .alias("v", "version")
-    .version(appInfo.name + " " + appInfo.version)
+const argv = yargs
+    .usage("Usage: $0 -i <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>]")
     .option("i", {
         alias: "input",
-        describe: ".txt File Name",
+        describe: ".txt File Name or folder containing .txt files",
         type: "string",
         demandOption: true,
     })
     .option("s", {
         alias: "stylesheet",
-        describe: "CSS Link",
+        describe: "Optional CSS Link",
         default: "",
         type: "string",
         demandOption: false,
     })
     .alias("h", "help")
+    .alias("v", "version")
+    .version(appInfo.name + " " + appInfo.version)
     .help().argv;
 
+let cssLink = "";
 if (argv.stylesheet !== "") {
     cssLink = argv.stylesheet;
 }

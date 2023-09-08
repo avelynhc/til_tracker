@@ -1,7 +1,7 @@
 const htmlFs = require("fs");
 
 module.exports.convertToHTML = function (title: string, cssLink: any, body: any, outputFolder: any) {
-    const result = `<!doctype html>
+    const result:string = `<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">

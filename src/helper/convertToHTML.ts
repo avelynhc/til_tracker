@@ -9,7 +9,7 @@ module.exports.convertToHTML = function (title: string, cssLink: any, body: any,
     <meta name="viewport" content="width=device-width, initial-scale=1">
     ${
         cssLink
-            ? `<link rel='stylesheet' href='${cssLink}'>`
+            ? `<link rel="stylesheet" href="${cssLink}">`
             : ""
     }
 </head>

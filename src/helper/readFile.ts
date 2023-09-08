@@ -11,8 +11,7 @@ module.exports.readFile = function (inputPath: any, cssLink: any, outputFolder: 
         const data = readFileFs.readFileSync(inputPath, "utf8");
         body = data
             .split(/\r?\n\r?\n/)
-            .map((paragraph: string) =>
-                `<p>${paragraph.replace(/\r?\n/, " ")}</p>\n\n`)
+            .map((para: string) => `<p>${para.replace(/\r?\n/, " ")}</p>\n\n`)
             .join("");
     } catch (err) {
         console.error(err);

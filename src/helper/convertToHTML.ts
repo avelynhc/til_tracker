@@ -15,7 +15,7 @@ module.exports.convertToHTML = function (title: string, cssLink: any, body: any,
 </head>
 <h1>${title}</h1>
 <body>
-    ${body}
+${body}
 </body>
 </html>`;
 

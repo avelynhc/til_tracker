@@ -1,6 +1,20 @@
 # til_tracker
 Command-line tool processing input .txt files into generated .html files.
 
+### Installation
+```bash
+# Step 1: Ensure that NPM is installed on your system.
+$ npm --version
+
+# Step 2: Ensure that Node is installed on your system. You can check this by using:
+$ node --version
+
+# Step 3: Clone the repository to your local machine, and install it.
+$ git clone https://github.com/avelynhc/til_tracker.git
+$ cd til_tracker
+$ npm install
+```
+
 ### Features
 - User will be able to specify either a file or folder of files as input for conversion
 - If the input is a .txt file, it should process that file; 
@@ -67,7 +81,7 @@ test.html is created successfully!
 ```ts-node src/index.ts -i folderName` or `ts-node src/index.ts --input folderName```
 #### Example
 ```text
-./test/test1.txt
+./examples/test1.txt
 
 This is the test1 txt file of test folder.
 
@@ -75,7 +89,7 @@ This is the test1 txt file of test folder.
 ```
 
 ```text
-./test/test2.txt
+./examples/test2.txt
 
 This is the test2 txt file of test folder.
 
@@ -83,7 +97,7 @@ This is the test2 txt file of test folder.
 ```
 
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i test
+~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples
 Existing folder was successfully removed
 Output folder is successfully created!
 test1.html is created successfully!

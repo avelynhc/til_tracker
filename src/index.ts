@@ -9,7 +9,7 @@ const argv = yargs
     .usage("Usage: $0 -i <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>]")
     .option("i", {
         alias: "input",
-        describe: ".txt File Name or folder containing .txt files",
+        describe: "Input .txt file(s)",
         type: "string",
         demandOption: true,
     })

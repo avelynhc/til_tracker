@@ -1,6 +1,6 @@
 const htmlFs = require("fs");
 
-module.exports.convertToHTML = function (title: string, cssLink: any, body: any, outputFolder: any) {
+module.exports.convertToHTML = function (title: string, cssLink: string, body: string, outputFolder: string) {
     const result:string = `<!doctype html>
 <html lang="en">
 <head>
@@ -13,13 +13,13 @@ module.exports.convertToHTML = function (title: string, cssLink: any, body: any,
             : ""
     }
 </head>
-<h1>${title}</h1>
 <body>
+<h1>${title}</h1>
 ${body}
 </body>
 </html>`;
 
-    htmlFs.writeFile(`${outputFolder}/${title}.html`, result, function (err: any) {
+    htmlFs.writeFile(`${outputFolder}/${title}.html`, result, function (err: string) {
         if (err) console.error(err);
     });
     console.log(`${title}.html is created successfully!`);

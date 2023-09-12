@@ -19,7 +19,7 @@ ${body}
 </body>
 </html>`;
 
-    htmlFs.writeFile(`${outputFolder}/${title}.html`, result, function (err: string) {
+    htmlFs.writeFile(`${outputFolder}/${title}.html`, result, function (err: any) {
         if (err) console.error(err);
     });
     console.log(`${title}.html is created successfully!`);

@@ -3,7 +3,7 @@ import readFilePath from "path";
 const html = require("./convertToHTML");
 let body:string = "";
 
-module.exports.readFile = function (inputPath: any, cssLink: any, outputFolder: any) {
+module.exports.readFile = function (inputPath: string, cssLink: string, outputFolder: string) {
     // parse a title from the input file, which will be used to populate <title>...</title>
     const title:string = readFilePath.basename(inputPath, ".txt");
 

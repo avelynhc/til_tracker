@@ -1,11 +1,11 @@
 import readFolderFs from "fs";
 const fileModule = require("./readFile");
 
-module.exports.readFolder = function (path: any, cssLink: any, outputFolder: any) {
+module.exports.readFolder = function (path: string, cssLink: string, outputFolder: string) {
     readFolderFs.readdir(path, function (err: any, files: any[]) {
         if (err) return console.log(err);
-
-        files.forEach(function (file) {
+        const textFiles:any[] = files.filter(file => file.split('.').pop()==='txt');
+        textFiles.forEach(function (file) {
             fileModule.readFile(
                 `${path}/${file}`,
                 cssLink,

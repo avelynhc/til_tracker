@@ -50,7 +50,7 @@ This is the third paragraph.
 ```
 
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i test.txt
+~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt
 Existing folder was successfully removed
 Output folder is successfully created!
 test.html is created successfully!
@@ -141,11 +141,14 @@ test2.html is created successfully!
 </html>
 ```
 
+Note: Even if a file and a folder share the same name, you will still be able to obtain the desired result. 
+Since folders do not have file extensions, there is no confusion between the folder and the file.
+
 #### Specify stylesheet URL to a CSS stylesheet to be used in the <head> of generated HTML files
 ```ts-node src/index.ts -i fileName.txt -s stylesheetURL```
 #### Example
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i test.txt -s https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css 
+~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -s https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css 
 Existing folder was successfully removed
 Output folder is successfully created!
 test.html is created successfully!

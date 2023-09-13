@@ -22,12 +22,13 @@ if it's a directory, it will look for and find all .txt files within that folder
 processing each one.
 
 ### Argument Options
-| Option                                                | Responsibility                                  |
-|-------------------------------------------------------|-------------------------------------------------|
-| -v, --version                                         | displays app name and version                   |
-| -h, --help                                            | show help                                       |
-| -i, --input <'fileName'> or <'folderName'> `required` | input file or folder will be converted to .html |
-| -s, --stylesheet <'URL to a CSS stylesheet'>          | used in the <head> of generated HTML files      |
+| Option                                               | Responsibility                                    |
+|------------------------------------------------------|---------------------------------------------------|
+| -v, --version                                        | displays app name and version                     |
+| -h, --help                                           | show help                                         |
+| -i, --input <'fileName'> or <'folderName'> `required` | input file or folder will be converted to .html   |
+| -s, --stylesheet <'URL to a CSS stylesheet'>         | CSS stylesheet to be used in generated HTNL files |
+| -l, --lang <'language'>                              | language to be used in generated HTML files       |
 
 ### Usage
 #### Check Version of the app
@@ -66,8 +67,8 @@ test.html is created successfully!
     <title>test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<h1>test</h1>
 <body>
+    <h1>test</h1>
     <p>This is the first paragraph.</p>
     
     <p>This is the second paragraph.</p>
@@ -114,8 +115,8 @@ test2.html is created successfully!
     <title>test1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<h1>test1</h1>
 <body>
+    <h1>test1</h1>  
     <p>This is the test1 txt file of test folder.</p>
     
     <p>This is the test1 txt file of test folder.</p>
@@ -132,11 +133,40 @@ test2.html is created successfully!
     <title>test2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<h1>test2</h1>
 <body>
+    <h1>test2</h1>
     <p>This is the test2 txt file of test folder.</p>
     
     <p>This is the test2 txt file of test folder.</p>
+</body>
+</html>
+```
+
+#### Convert .txt file to .html file with french
+```ts-node src/index.ts -i folderName -l fr```
+#### Example
+```sh
+~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -l fr
+Existing folder was successfully removed
+Output folder is successfully created!
+examples.html is created successfully!
+```
+
+```html
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>examples</h1>
+    <p>This is the first paragraph of test1.txt.</p>
+    
+    <p>This is the second paragraph of test1.txt.</p>
+    
+    <p>This is the third paragraph of test1.txt.</p>
 </body>
 </html>
 ```

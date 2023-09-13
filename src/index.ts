@@ -20,6 +20,13 @@ const argv = yargs
         type: "string",
         demandOption: false,
     })
+    .option("l", {
+        alias: "lang",
+        describe: "Language used in generated file",
+        default: "en-CA",
+        type: "string",
+        demandOption: false,
+    })
     .alias("h", "help")
     .alias("v", "version")
     .version(appInfo.name + " " + appInfo.version)
@@ -41,6 +48,7 @@ if (!fs.existsSync(outputFolder)) {
 }
 console.log('Output folder is successfully created!');
 
+const selectedLang:string = argv.lang;
 // check if input is an individual file or directory
 fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
@@ -49,9 +57,9 @@ fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => an
     }
 
     if (stats.isDirectory()) {
-        folder.readFolder(argv.input, cssLink, outputFolder);
+        folder.readFolder(argv.input, cssLink, selectedLang, outputFolder);
     } else if (stats.isFile() && path.extname(argv.input) === ".txt") {
-        file.readFile(argv.input, cssLink, outputFolder);
+        file.readFile(argv.input, cssLink, selectedLang, outputFolder);
     } else {
         console.error("Error: file extension should be .txt");
     }

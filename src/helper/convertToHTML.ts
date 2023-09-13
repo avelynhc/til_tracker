@@ -1,8 +1,8 @@
 const htmlFs = require("fs");
 
-module.exports.convertToHTML = function (title: string, cssLink: string, body: string, outputFolder: string) {
+module.exports.convertToHTML = function (title: string, cssLink: string, body: string, selectedLang: string, outputFolder: string) {
     const result:string = `<!doctype html>
-<html lang="en">
+<html lang="${selectedLang}">
 <head>
     <meta charset="utf-8">
     <title>${title}</title>

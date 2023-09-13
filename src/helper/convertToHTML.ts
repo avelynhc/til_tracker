@@ -20,7 +20,10 @@ ${body}
 </html>`;
 
     htmlFs.writeFile(`${outputFolder}/${title}.html`, result, function (err: any) {
-        if (err) console.error(err);
+        if (err) {
+            console.error(err);
+            process.exit(-1);
+        }
     });
     console.log(`${title}.html is created successfully!`);
 };

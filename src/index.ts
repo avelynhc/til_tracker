@@ -53,7 +53,7 @@ const selectedLang:string = argv.lang;
 fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
         console.error(err);
-        return;
+        process.exit(-1);
     }
 
     if (stats.isDirectory()) {
@@ -62,5 +62,6 @@ fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => an
         file.readFile(argv.input, cssLink, selectedLang, outputFolder);
     } else {
         console.error("Error: file extension should be .txt");
+        process.exit(-1);
     }
 });

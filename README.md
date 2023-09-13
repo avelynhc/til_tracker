@@ -143,7 +143,7 @@ test2.html is created successfully!
 ```
 
 #### Convert .txt file to .html file with french
-```ts-node src/index.ts -i folderName -l fr```
+```ts-node src/index.ts -i folderName -l language```
 #### Example
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -l fr
@@ -159,6 +159,36 @@ examples.html is created successfully!
     <meta charset="utf-8">
     <title>examples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>examples</h1>
+    <p>This is the first paragraph of test1.txt.</p>
+    
+    <p>This is the second paragraph of test1.txt.</p>
+    
+    <p>This is the third paragraph of test1.txt.</p>
+</body>
+</html>
+```
+
+#### Convert .txt file to .html file with french and stylesheet
+```ts-node src/index.ts -i folderName -l language -s CSS-styelesheet-URL```
+#### Example
+```sh
+~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -l kor -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css                                                                        ✔  23:08:51 
+Existing folder was successfully removed
+Output folder is successfully created!
+examples.html is created successfully!
+```
+
+```html
+<!doctype html>
+<html lang="kor">
+<head>
+    <meta charset="utf-8">
+    <title>examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
     <h1>examples</h1>

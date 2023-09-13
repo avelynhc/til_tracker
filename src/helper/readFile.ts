@@ -16,8 +16,8 @@ module.exports.readFile = function (inputPath: string, cssLink: string, outputFo
             .join("");
     } catch (err) {
         console.error(err);
+        process.exit(-1);
     }
 
     html.convertToHTML(title, cssLink, body, outputFolder);
-    return title;
 };

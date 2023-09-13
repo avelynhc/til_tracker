@@ -45,7 +45,7 @@ console.log('Output folder is successfully created!');
 fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
         console.error(err);
-        return;
+        process.exit(-1);
     }
 
     if (stats.isDirectory()) {
@@ -54,5 +54,6 @@ fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => an
         file.readFile(argv.input, cssLink, outputFolder);
     } else {
         console.error("Error: file extension should be .txt");
+        process.exit(-1);
     }
 });

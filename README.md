@@ -1,5 +1,5 @@
 # til_tracker
-Command-line tool processing input .txt files into generated .html files.
+Command-line tool written in Typescript processing input .txt files into generated .html files.
 
 ### Installation
 ```bash

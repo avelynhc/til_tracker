@@ -1,5 +1,5 @@
-import readFileFs from "fs";
-import readFilePath from "path";
+import * as readFilePath from 'path';
+import * as readFileFs from 'fs';
 const html = require("./convertToHTML");
 let body:string = "";
 

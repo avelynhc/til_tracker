@@ -1,4 +1,4 @@
-const htmlFs = require("fs");
+import * as htmlFs from 'fs';
 
 module.exports.convertToHTML = function (title: string, cssLink: string, body: string, selectedLang: string, outputFolder: string) {
     const result:string = `<!doctype html>

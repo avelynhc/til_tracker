@@ -1,4 +1,4 @@
-import readFolderFs from "fs";
+import * as readFolderFs from 'fs';
 const fileModule = require("./readFile");
 
 module.exports.readFolder = function (path: string, cssLink: string, selectedLang: string,  outputFolder: string) {

@@ -31,48 +31,49 @@ processing each one.
 
 ### Usage
 #### Check Version of the app
-```ts-node src/index.ts --version` or `ts-node src/index.ts -v```
+```ts-node src/index.ts --version or ts-node src/index.ts -v```
 
 #### Help Command
-```ts-node src/index.ts --help` or `ts-node src/index.ts -h```
+```ts-node src/index.ts --help or ts-node src/index.ts -h```
 
 #### Convert .txt file to .html file
 ```ts-node src/index.ts fileName.txt```
 #### Example
 ```text
-./test.txt
+./examples.txt
 
-This is the first paragraph.
+This is the first paragraph of examples.txt.
 
-This is the second paragraph.
+This is the second paragraph of examples.txt.
 
-This is the third paragraph.
+This is the third paragraph of examples.txt.
 ```
 
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt
 Existing folder was successfully removed
 Output folder is successfully created!
-test.html is created successfully!
+examples.html is created successfully!
 ```
 
 ```html
-./til/test.html
+./til/examples.html
 
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>examples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
-    <h1>test</h1>
-    <p>This is the first paragraph.</p>
+    <h1>examples</h1>
+    <p>This is the first paragraph of examples.txt.</p>
     
-    <p>This is the second paragraph.</p>
+    <p>This is the second paragraph of examples.txt.</p>
     
-    <p>This is the third paragraph.</p>
+    <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
 ```
@@ -83,17 +84,17 @@ test.html is created successfully!
 ```text
 ./examples/test1.txt
 
-This is the test1 txt file of test folder.
+This is the test1 txt file of examples folder.
 
-This is the test1 txt file of test folder.
+This is the test1 txt file of examples folder.
 ```
 
 ```text
 ./examples/test2.txt
 
-This is the test2 txt file of test folder.
+This is the test2 txt file of examples folder.
 
-This is the test2 txt file of test folder.
+This is the test2 txt file of examples folder.
 ```
 
 ```sh
@@ -105,7 +106,7 @@ test2.html is created successfully!
 ```
 
 ```html
-./til/test1.html
+./til/examples.html
 
 <!doctype html>
 <html lang="en">
@@ -116,15 +117,16 @@ test2.html is created successfully!
 </head>
 <body>
     <h1>test1</h1>  
-    <p>This is the test1 txt file of test folder.</p>
+    <p>This is the test1 txt file of examples folder.</p>
     
-    <p>This is the test1 txt file of test folder.</p>
+    <p>This is the test1 txt file of examples folder.</p>
 </body>
 </html>
 ```
 
 ```html
 ./til/test2.html
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -134,15 +136,15 @@ test2.html is created successfully!
 </head>
 <body>
     <h1>test2</h1>
-    <p>This is the test2 txt file of test folder.</p>
+    <p>This is the test2 txt file of examples folder.</p>
     
-    <p>This is the test2 txt file of test folder.</p>
+    <p>This is the test2 txt file of examples folder.</p>
 </body>
 </html>
 ```
 
-#### Convert .txt file to .html file with french
-```ts-node src/index.ts folderName -l language```
+#### Convert .txt file to .html file with another language
+```ts-node src/index.ts fileName -l language```
 #### Example
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -l fr
@@ -152,6 +154,8 @@ examples.html is created successfully!
 ```
 
 ```html
+./til/examples.html
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -161,41 +165,62 @@ examples.html is created successfully!
 </head>
 <body>
     <h1>examples</h1>
-    <p>This is the first paragraph of test1.txt.</p>
+    <p>This is the first paragraph of examples.txt.</p>
     
-    <p>This is the second paragraph of test1.txt.</p>
+    <p>This is the second paragraph of examples.txt.</p>
     
-    <p>This is the third paragraph of test1.txt.</p>
+    <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
 ```
 
-#### Convert .txt file to .html file with french and stylesheet
+#### Convert .txt file to .html file with another language and stylesheet
 ```ts-node src/index.ts folderName -l language -s CSS-styelesheet-URL```
 #### Example
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -l ko -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css                                                                        ✔  23:08:51 
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples -l fr -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css                                                                        ✔  23:08:51 
 Existing folder was successfully removed
 Output folder is successfully created!
-examples.html is created successfully!
+test1.html is created successfully!
+test2.html is created successfully!
 ```
 
 ```html
+./til/test1.html
+
 <!doctype html>
-<html lang="ko">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>examples</title>
+    <title>test1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-    <h1>examples</h1>
-    <p>This is the first paragraph of test1.txt.</p>
+    <h1>test1</h1>
+    <p>This is the test1 txt file of examples folder.</p>
     
-    <p>This is the second paragraph of test1.txt.</p>
+    <p>This is the test1 txt file of examples folder.</p>
+</body>
+</html>
+```
+
+```html
+./til/test2.html
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>test2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+    <body>
+    <h1>test2</h1>
+    <p>This is the test2 txt file of examples folder.</p>
     
-    <p>This is the third paragraph of test1.txt.</p>
+    <p>This is the test2 txt file of examples folder.</p>
 </body>
 </html>
 ```
@@ -210,27 +235,27 @@ Since folders do not have file extensions, there is no confusion between the fol
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -s https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css 
 Existing folder was successfully removed
 Output folder is successfully created!
-test.html is created successfully!
+examples.html is created successfully!
 ```
 
 ```html
 ./til/test.html
 
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>examples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css">
 </head>
-<h1>test</h1>
 <body>
-    <p>This is the first paragraph.</p>
+    <h1>examples</h1>
+    <p>This is the first paragraph of examples.txt.</p>
     
-    <p>This is the second paragraph.</p>
+    <p>This is the second paragraph of examples.txt.</p>
     
-    <p>This is the third paragraph.</p>
+    <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
 ```

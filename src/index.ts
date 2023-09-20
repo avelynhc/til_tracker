@@ -1,18 +1,12 @@
-import path from "path";
-import fs from "fs";
+import * as path from 'path';
+import * as fs from 'fs';
 const appInfo = require("../package.json");
 const folder = require("./helper/readFolder");
 const file = require("./helper/readFile");
 const yargs = require("yargs");
 
 const argv = yargs
-    .usage("Usage: $0 -i <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>]")
-    .option("i", {
-        alias: "input",
-        describe: "Input .txt file(s)",
-        type: "string",
-        demandOption: true,
-    })
+    .usage("Usage: $0 <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>] [-l <language-code>]")
     .option("s", {
         alias: "stylesheet",
         describe: "Optional CSS Link",
@@ -38,7 +32,7 @@ if (argv.stylesheet !== "") {
 }
 
 // check if outputFolder already exists and remove existing folder for containing the latest output
-const outputFolder = "./dist";
+const outputFolder = "./til";
 if (!fs.existsSync(outputFolder)) {
     fs.mkdirSync(outputFolder);
 } else {
@@ -50,16 +44,18 @@ console.log('Output folder is successfully created!');
 
 const selectedLang:string = argv.lang;
 // check if input is an individual file or directory
-fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
+// fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
+const fileName = argv._[0];
+fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
         console.error(err);
         process.exit(-1);
     }
 
     if (stats.isDirectory()) {
-        folder.readFolder(argv.input, cssLink, selectedLang, outputFolder);
-    } else if (stats.isFile() && path.extname(argv.input) === ".txt") {
-        file.readFile(argv.input, cssLink, selectedLang, outputFolder);
+        folder.readFolder(fileName, cssLink, selectedLang, outputFolder);
+    } else if (stats.isFile() && path.extname(fileName) === ".txt") {
+        file.readFile(fileName, cssLink, selectedLang, outputFolder);
     } else {
         console.error("Error: file extension should be .txt");
         process.exit(-1);

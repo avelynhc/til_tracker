@@ -1,5 +1,5 @@
-This is the first paragraph of test1.txt.
+This is the first paragraph of examples.txt.
 
-This is the second paragraph of test1.txt.
+This is the second paragraph of examples.txt.
 
-This is the third paragraph of test1.txt.
+This is the third paragraph of examples.txt.

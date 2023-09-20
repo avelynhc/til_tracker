@@ -12,7 +12,7 @@ export function readFile(inputPath: string, cssLink: string, selectedLang: strin
         body = data
             .split(/\r?\n\r?\n/)
             .map((para: string) =>
-                `<p>${para.replace(/\r?\n/, " ")}</p>\n\n`)
+                `<p>${para.replace(/\r?\n/, " ")}</p>`)
             .join("");
     } catch (err) {
         console.error(err);

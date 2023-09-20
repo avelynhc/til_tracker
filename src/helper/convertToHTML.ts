@@ -26,4 +26,4 @@ ${body}
         }
     });
     console.log(`${title}.html is created successfully!`);
-};
+}

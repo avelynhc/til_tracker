@@ -22,4 +22,4 @@ export function readFolder (path: string, cssLink: string, selectedLang: string,
         console.error(error);
         process.exit(-1);
     }
-};
+}

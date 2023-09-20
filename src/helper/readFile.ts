@@ -20,4 +20,4 @@ export function readFile(inputPath: string, cssLink: string, selectedLang: strin
     }
 
     convertToHTML(title, cssLink, body, selectedLang, outputFolder);
-};
+}

@@ -1,7 +1,7 @@
 import * as readFolderFs from 'fs';
-const fileModule = require("./readFile");
+import { readFile } from "./readFile";
 
-module.exports.readFolder = function (path: string, cssLink: string, selectedLang: string,  outputFolder: string) {
+export function readFolder (path: string, cssLink: string, selectedLang: string,  outputFolder: string) {
     try {
         readFolderFs.readdir(path, function (err: any, files: any[]) {
             if (err) {
@@ -10,7 +10,7 @@ module.exports.readFolder = function (path: string, cssLink: string, selectedLan
             }
             const textFiles:any[] = files.filter(file => file.split('.').pop()==='txt');
             textFiles.forEach(function (file) {
-                fileModule.readFile(
+                readFile(
                     `${path}/${file}`,
                     cssLink,
                     selectedLang,

@@ -1,9 +1,9 @@
 import * as readFilePath from 'path';
 import * as readFileFs from 'fs';
-const html = require("./convertToHTML");
+import { convertToHTML } from "./convertToHTML";
 let body:string = "";
 
-module.exports.readFile = function (inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
+export function readFile(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
     // parse a title from the input file, which will be used to populate <title>...</title>
     const title:string = readFilePath.basename(inputPath, ".txt");
 
@@ -19,5 +19,5 @@ module.exports.readFile = function (inputPath: string, cssLink: string, selected
         process.exit(-1);
     }
 
-    html.convertToHTML(title, cssLink, body, selectedLang, outputFolder);
+    convertToHTML(title, cssLink, body, selectedLang, outputFolder);
 };

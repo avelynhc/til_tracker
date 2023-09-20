@@ -45,15 +45,16 @@ if (!fs.existsSync(outputFolder)) {
 }
 console.log('Output folder is successfully created!');
 
-const selectedLang:string = argv.lang;
-// check if input is an individual file or directory
+// extract file name and language from argument passed
 const fileName = argv._[0];
+const selectedLang:string = argv.lang;
 fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
         console.error(err);
         process.exit(-1);
     }
 
+    // check if input is an individual file or directory
     if (stats.isDirectory()) {
         readFolder(fileName, cssLink, selectedLang, outputFolder);
     } else if (stats.isFile() && path.extname(fileName) === '.txt') {

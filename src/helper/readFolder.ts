@@ -8,6 +8,8 @@ export function readFolder (path: string, cssLink: string, selectedLang: string,
                 console.log(err);
                 process.exit(-1);
             }
+
+            // filter to only get the files with .txt extension
             const textFiles:any[] = files.filter(file => file.split('.').pop()==='txt');
             textFiles.forEach(function (file) {
                 readFile(

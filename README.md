@@ -26,7 +26,6 @@ processing each one.
 |------------------------------------------------------|---------------------------------------------------|
 | -v, --version                                        | displays app name and version                     |
 | -h, --help                                           | show help                                         |
-| -i, --input <'fileName'> or <'folderName'> `required` | input file or folder will be converted to .html   |
 | -s, --stylesheet <'URL to a CSS stylesheet'>         | CSS stylesheet to be used in generated HTNL files |
 | -l, --lang <'language'>                              | language to be used in generated HTML files       |
 
@@ -38,7 +37,7 @@ processing each one.
 ```ts-node src/index.ts --help` or `ts-node src/index.ts -h```
 
 #### Convert .txt file to .html file
-```ts-node src/index.ts -i fileName.txt` or `ts-node src/index.ts --input fileName.txt```
+```ts-node src/index.ts fileName.txt```
 #### Example
 ```text
 ./test.txt
@@ -51,14 +50,14 @@ This is the third paragraph.
 ```
 
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt
 Existing folder was successfully removed
 Output folder is successfully created!
 test.html is created successfully!
 ```
 
 ```html
-./dist/test.html
+./til/test.html
 
 <!doctype html>
 <html lang="en">
@@ -79,7 +78,7 @@ test.html is created successfully!
 ```
 
 #### Convert .txt files in a folder to .html files in a folder
-```ts-node src/index.ts -i folderName` or `ts-node src/index.ts --input folderName```
+```ts-node src/index.ts folderName```
 #### Example
 ```text
 ./examples/test1.txt
@@ -98,7 +97,7 @@ This is the test2 txt file of test folder.
 ```
 
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples
 Existing folder was successfully removed
 Output folder is successfully created!
 test1.html is created successfully!
@@ -106,7 +105,7 @@ test2.html is created successfully!
 ```
 
 ```html
-./dist/test1.html
+./til/test1.html
 
 <!doctype html>
 <html lang="en">
@@ -125,7 +124,7 @@ test2.html is created successfully!
 ```
 
 ```html
-./dist/test2.html
+./til/test2.html
 <!doctype html>
 <html lang="en">
 <head>
@@ -143,10 +142,10 @@ test2.html is created successfully!
 ```
 
 #### Convert .txt file to .html file with french
-```ts-node src/index.ts -i folderName -l language```
+```ts-node src/index.ts folderName -l language```
 #### Example
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -l fr
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -l fr
 Existing folder was successfully removed
 Output folder is successfully created!
 examples.html is created successfully!
@@ -172,10 +171,10 @@ examples.html is created successfully!
 ```
 
 #### Convert .txt file to .html file with french and stylesheet
-```ts-node src/index.ts -i folderName -l language -s CSS-styelesheet-URL```
+```ts-node src/index.ts folderName -l language -s CSS-styelesheet-URL```
 #### Example
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -l kor -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css                                                                        ✔  23:08:51 
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -l ko -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css                                                                        ✔  23:08:51 
 Existing folder was successfully removed
 Output folder is successfully created!
 examples.html is created successfully!
@@ -183,7 +182,7 @@ examples.html is created successfully!
 
 ```html
 <!doctype html>
-<html lang="kor">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <title>examples</title>
@@ -205,17 +204,17 @@ Note: Even if a file and a folder share the same name, you will still be able to
 Since folders do not have file extensions, there is no confusion between the folder and the file.
 
 #### Specify stylesheet URL to a CSS stylesheet to be used in the <head> of generated HTML files
-```ts-node src/index.ts -i fileName.txt -s stylesheetURL```
+```ts-node src/index.ts fileName.txt -s stylesheetURL```
 #### Example
 ```sh
-~/WebstormProjects/til_tracker $ ts-node src/index.ts -i examples.txt -s https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css 
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -s https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css 
 Existing folder was successfully removed
 Output folder is successfully created!
 test.html is created successfully!
 ```
 
 ```html
-./dist/test.html
+./til/test.html
 
 <!doctype html>
 <html lang="en">

@@ -1,9 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
-
 import { readFolder } from './helper/readFolder';
 import { readFile } from './helper/readFile';
-
 const yargs = require('yargs');
 
 // read package.json file
@@ -49,7 +47,6 @@ console.log('Output folder is successfully created!');
 
 const selectedLang:string = argv.lang;
 // check if input is an individual file or directory
-// fs.stat(argv.input, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
 const fileName = argv._[0];
 fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {

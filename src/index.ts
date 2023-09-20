@@ -1,38 +1,43 @@
 import * as path from 'path';
 import * as fs from 'fs';
-const appInfo = require("../package.json");
-const folder = require("./helper/readFolder");
-const file = require("./helper/readFile");
-const yargs = require("yargs");
+
+import { readFolder } from './helper/readFolder';
+import { readFile } from './helper/readFile';
+
+const yargs = require('yargs');
+
+// read package.json file
+const appInfo = fs.readFileSync('./package.json', "utf8");
+const parsedInfo = JSON.parse(appInfo);
 
 const argv = yargs
-    .usage("Usage: $0 <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>] [-l <language-code>]")
-    .option("s", {
-        alias: "stylesheet",
-        describe: "Optional CSS Link",
-        default: "",
-        type: "string",
+    .usage('Usage: $0 <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>] [-l <language-code>]')
+    .option('s', {
+        alias: 'stylesheet',
+        describe: 'Optional CSS Link',
+        default: '',
+        type: 'string',
         demandOption: false,
     })
-    .option("l", {
-        alias: "lang",
-        describe: "Language used in generated file",
-        default: "en-CA",
-        type: "string",
+    .option('l', {
+        alias: 'lang',
+        describe: 'Language used in generated file',
+        default: 'en-CA',
+        type: 'string',
         demandOption: false,
     })
-    .alias("h", "help")
-    .alias("v", "version")
-    .version(appInfo.name + " " + appInfo.version)
+    .alias('h', 'help')
+    .alias('v', 'version')
+    .version(parsedInfo.name + ' ' + parsedInfo.version)
     .help().argv;
 
-let cssLink = "";
-if (argv.stylesheet !== "") {
+let cssLink = '';
+if (argv.stylesheet !== '') {
     cssLink = argv.stylesheet;
 }
 
 // check if outputFolder already exists and remove existing folder for containing the latest output
-const outputFolder = "./til";
+const outputFolder = './til';
 if (!fs.existsSync(outputFolder)) {
     fs.mkdirSync(outputFolder);
 } else {
@@ -53,11 +58,11 @@ fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any;
     }
 
     if (stats.isDirectory()) {
-        folder.readFolder(fileName, cssLink, selectedLang, outputFolder);
-    } else if (stats.isFile() && path.extname(fileName) === ".txt") {
-        file.readFile(fileName, cssLink, selectedLang, outputFolder);
+        readFolder(fileName, cssLink, selectedLang, outputFolder);
+    } else if (stats.isFile() && path.extname(fileName) === '.txt') {
+        readFile(fileName, cssLink, selectedLang, outputFolder);
     } else {
-        console.error("Error: file extension should be .txt");
+        console.error('Error: file extension should be .txt');
         process.exit(-1);
     }
 });

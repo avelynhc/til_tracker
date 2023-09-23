@@ -1,6 +1,7 @@
 import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
 import { convertToHTML } from "./convertToHTML";
+import { formatHtmlForMarkdownLine } from './markdown/lineQueries';
 let body: string = "";
 
 export function readFile(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
@@ -40,7 +41,6 @@ export function readFile(inputPath: string, cssLink: string, selectedLang: strin
  * @returns The transformed content
  */
 function parseTextFileContent(content: string): string {
-    console.log("Parsing text file");
     return content
         .split(/\r?\n\r?\n/)
         .map((para: string) =>
@@ -55,12 +55,14 @@ function parseTextFileContent(content: string): string {
  * @returns The transformed content
  */
 function parseMarkdownFileContent(content: string): string {
-    console.log("Parsing markdown file");
     return content
-        .split(/\r?\n\r?\n/)
-        .map((para: string) =>
-            `<p>${para.replace(/\r?\n/, " ")}</p>`)
-        .join("");
+        .replace(/(\r?\n){1}/, ' ') // Aggregate text at gaps of single newlines
+        .split(/\r?\n/)
+        .filter(line => line?.length > 0) // Remove empty lines
+        .map((line: string) => {
+            return formatHtmlForMarkdownLine(line)
+        })
+        .join("\n"); // Join all the generated tags
 }
 
 // General file queries

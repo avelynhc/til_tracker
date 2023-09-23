@@ -1,7 +1,6 @@
 import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
-import { convertToHTML } from "./convertToHTML";
-import { formatHtmlForMarkdownLine } from './markdown/lineQueries';
+import { convertToHTML, formatHtmlForMarkdownLine } from "./convertToHTML";
 let body: string = "";
 
 export function readFile(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {

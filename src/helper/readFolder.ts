@@ -1,4 +1,5 @@
 import * as readFolderFs from 'fs';
+import * as readFilePath from 'path';
 import { readFile } from "./readFile";
 
 export function readFolder (path: string, cssLink: string, selectedLang: string,  outputFolder: string) {
@@ -10,7 +11,7 @@ export function readFolder (path: string, cssLink: string, selectedLang: string,
             }
 
             // filter to only get the files with .txt extension
-            const textFiles:any[] = files.filter(file => file.split('.').pop()==='txt');
+            const textFiles:any[] = files.filter(file => ['.md', '.txt'].includes(readFilePath.extname(file)));
             textFiles.forEach(function (file) {
                 readFile(
                     `${path}/${file}`,

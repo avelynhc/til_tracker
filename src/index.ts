@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { SUPPORTED_FILE_EXTENSIONS } from './helper/convertToHTML';
 import { readFile } from './helper/readFile';
 import { readFolder } from './helper/readFolder';
 const yargs = require('yargs');
@@ -57,10 +58,10 @@ fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any;
     // check if input is an individual file or directory
     if (stats.isDirectory()) {
         readFolder(fileName, cssLink, selectedLang, outputFolder);
-    } else if (stats.isFile() && path.extname(fileName) === '.txt') {
+    } else if (stats.isFile() && SUPPORTED_FILE_EXTENSIONS.includes(path.extname(fileName))) {
         readFile(fileName, cssLink, selectedLang, outputFolder);
     } else {
-        console.error('Error: file extension should be .txt');
+        console.error(`Error: Only these file extensions are supported: ${SUPPORTED_FILE_EXTENSIONS}`);
         process.exit(-1);
     }
 });

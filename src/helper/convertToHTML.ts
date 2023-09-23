@@ -1,5 +1,7 @@
 import * as htmlFs from 'fs';
 
+export const SUPPORTED_FILE_EXTENSIONS = ['.md', '.txt'];
+
 export function convertToHTML(title: string, cssLink: string, body: string, selectedLang: string, outputFolder: string) {
     const result:string = `<!doctype html>
 <html lang="${selectedLang}">

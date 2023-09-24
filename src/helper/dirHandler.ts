@@ -1,9 +1,9 @@
 import * as readFolderFs from 'fs';
 import * as readFilePath from 'path';
 import { SUPPORTED_FILE_EXTENSIONS } from './htmlConversion';
-import { readFile } from "./readFile";
+import { fileHandler } from "./fileHandler";
 
-export function readFolder (path: string, cssLink: string, selectedLang: string,  outputFolder: string) {
+export function dirHandler (path: string, cssLink: string, selectedLang: string, outputFolder: string) {
     try {
         readFolderFs.readdir(path, function (err: any, files: any[]) {
             if (err) {
@@ -18,7 +18,7 @@ export function readFolder (path: string, cssLink: string, selectedLang: string,
                 process.exit(-1);
             }
             textFiles.forEach(function (file) {
-                readFile(
+                fileHandler(
                     `${path}/${file}`,
                     cssLink,
                     selectedLang,

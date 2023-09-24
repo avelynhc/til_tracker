@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { SUPPORTED_FILE_EXTENSIONS } from './helper/convertToHTML';
-import { readFile } from './helper/readFile';
-import { readFolder } from './helper/readFolder';
+import { SUPPORTED_FILE_EXTENSIONS } from './helper/htmlConversion';
+import { fileHandler } from './helper/fileHandler';
+import { dirHandler } from './helper/dirHandler';
 const yargs = require('yargs');
 
 // read package.json file
@@ -57,9 +57,9 @@ fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any;
 
     // check if input is an individual file or directory
     if (stats.isDirectory()) {
-        readFolder(fileName, cssLink, selectedLang, outputFolder);
+        dirHandler(fileName, cssLink, selectedLang, outputFolder);
     } else if (stats.isFile() && SUPPORTED_FILE_EXTENSIONS.includes(path.extname(fileName))) {
-        readFile(fileName, cssLink, selectedLang, outputFolder);
+        fileHandler(fileName, cssLink, selectedLang, outputFolder);
     } else {
         console.error(`Error: Only these file extensions are supported: ${SUPPORTED_FILE_EXTENSIONS}`);
         process.exit(-1);

@@ -1,25 +1,23 @@
 import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
-import { htmlConversion, formatHtmlForMarkdownLine } from "./htmlConversion";
-let body: string = "";
+import { htmlConversion, formatHtmlForMarkdownLine } from './htmlConversion';
+let body: string = '';
 
-export function readFile(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
+export function fileHandler(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
     // parse a title from the input file, which will be used to populate <title>...</title>
     const title: string = readFilePath.basename(inputPath, readFilePath.extname(inputPath));
 
     try {
-        const data: string = readFileFs.readFileSync(inputPath, "utf8");
+        const data: string = readFileFs.readFileSync(inputPath, 'utf8');
         
         // Check the type of file and parse accordingly
         if (isTextFile(inputPath)) {
             body = parseTextFileContent(data);
-        }
-        else if (isMarkdownFile(inputPath)) {
+        } else if (isMarkdownFile(inputPath)) {
             body = parseMarkdownFileContent(data);
-        }
-        else {
+        } else {
             // Reaching this branch is only possible when user provides a file (not folder) as commandline argument.
-            // The readFolder function automatically filters out unsupported files.
+            // The dirHandler function automatically filters out unsupported files.
             console.error(`Only text(.txt) and markdown(.md) files are supported! Skipping file ${inputPath}`);
         }
         
@@ -43,8 +41,8 @@ function parseTextFileContent(content: string): string {
     return content
         .split(/\r?\n\r?\n/)
         .map((para: string) =>
-            `<p>${para.replace(/\r?\n/, " ")}</p>`)
-        .join("");
+            `<p>${para.replace(/\r?\n/, ' ')}</p>`)
+        .join('\n');
 }
 
 /**
@@ -61,7 +59,7 @@ function parseMarkdownFileContent(content: string): string {
         .map((line: string) => {
             return formatHtmlForMarkdownLine(line)
         })
-        .join("\n"); // Join all the generated tags
+        .join('\n'); // Join all the generated tags
 }
 
 // General file queries

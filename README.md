@@ -22,9 +22,8 @@ $ npm install
 
 ### Features
 - User will be able to specify either a file or folder of files as input for conversion
-- If the input is a .txt file, it should process that file; 
-if it's a directory, it will look for and find all .txt files within that folder, 
-processing each one.
+- If the input is a .txt or a .md file, it should process that file.
+- If it's a directory, it will look for and find all .txt and .md files within that folder, processing each one.
 
 ### Argument Options
 | Option                                               | Responsibility                                    |
@@ -36,13 +35,19 @@ processing each one.
 
 ### Usage
 #### Check Version of the app
-```ts-node src/index.ts --version or ts-node src/index.ts -v```
+```
+ts-node src/index.ts --version or ts-node src/index.ts -v
+```
 
 #### Help Command
-```ts-node src/index.ts --help or ts-node src/index.ts -h```
+```
+ts-node src/index.ts --help or ts-node src/index.ts -h
+```
 
 #### Convert .txt file to .html file
-```ts-node src/index.ts fileName.txt```
+```
+ts-node src/index.ts fileName.txt
+```
 #### Example
 ```text
 ./examples.txt
@@ -83,8 +88,10 @@ examples.html is created successfully!
 </html>
 ```
 
-#### Convert .txt files in a folder to .html files in a folder
-```ts-node src/index.ts folderName```
+#### Convert files in a folder to .html files in a folder
+```
+ts-node src/index.ts folderName
+```
 #### Example
 ```text
 ./examples/test1.txt
@@ -149,7 +156,9 @@ test2.html is created successfully!
 ```
 
 #### Convert .txt file to .html file with another language
-```ts-node src/index.ts fileName -l language```
+```
+ts-node src/index.ts fileName -l language
+```
 #### Example
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -l fr
@@ -179,8 +188,44 @@ examples.html is created successfully!
 </html>
 ```
 
+#### Convert .md file to .html file with another language
+```
+ts-node src/index.ts fileName -l language
+```
+#### Example
+```sh
+~/WebstormProjects/til_tracker $ ts-node .\src\index.ts .\examples\test.md
+Existing folder was successfully removed
+Output folder is successfully created!
+test.html is created successfully!
+```
+
+```html
+./til/test.html
+
+<!doctype html>
+<html lang="en-CA">
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+<h1>test</h1>
+<p>This is Mr.India's file Beware</p>
+<h1>Heading Level 1</h1>
+<h2>Heading Level 2</h2>
+<h3>Heading Level 3</h3>
+<p>Should be a paragraph</p>
+</body>
+</html>
+```
+
 #### Convert .txt file to .html file with another language and stylesheet
-```ts-node src/index.ts folderName -l language -s CSS-styelesheet-URL```
+```
+ts-node src/index.ts folderName -l language -s CSS-styelesheet-URL
+```
 #### Example
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts examples -l fr -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css                                                                        ✔  23:08:51 
@@ -234,7 +279,9 @@ Note: Even if a file and a folder share the same name, you will still be able to
 Since folders do not have file extensions, there is no confusion between the folder and the file.
 
 #### Specify stylesheet URL to a CSS stylesheet to be used in the <head> of generated HTML files
-```ts-node src/index.ts fileName.txt -s stylesheetURL```
+```
+ts-node src/index.ts fileName.txt -s stylesheetURL
+```
 #### Example
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node src/index.ts examples.txt -s https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css 

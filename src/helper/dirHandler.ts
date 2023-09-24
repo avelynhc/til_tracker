@@ -11,13 +11,13 @@ export function dirHandler (path: string, cssLink: string, selectedLang: string,
                 process.exit(-1);
             }
 
-            // filter to only get the files with .txt extension
-            const textFiles:any[] = files.filter(file => SUPPORTED_FILE_EXTENSIONS.includes(readFilePath.extname(file)));
-            if(textFiles.length===0) {
+            // filter to only get the files with supported file extension
+            const supportedFiles:any[] = files.filter(file => SUPPORTED_FILE_EXTENSIONS.includes(readFilePath.extname(file)));
+            if(supportedFiles.length===0) {
                 console.error(`Error: There is no text file in path: ${path}`);
                 process.exit(-1);
             }
-            textFiles.forEach(function (file) {
+            supportedFiles.forEach(function (file) {
                 fileHandler(
                     `${path}/${file}`,
                     cssLink,

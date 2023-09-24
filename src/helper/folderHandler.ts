@@ -1,6 +1,6 @@
 import * as readFolderFs from 'fs';
 import * as readFilePath from 'path';
-import { SUPPORTED_FILE_EXTENSIONS } from './convertToHTML';
+import { SUPPORTED_FILE_EXTENSIONS } from './htmlConversion';
 import { readFile } from "./readFile";
 
 export function readFolder (path: string, cssLink: string, selectedLang: string,  outputFolder: string) {

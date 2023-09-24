@@ -1,6 +1,6 @@
 import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
-import { convertToHTML, formatHtmlForMarkdownLine } from "./convertToHTML";
+import { htmlConversion, formatHtmlForMarkdownLine } from "./htmlConversion";
 let body: string = "";
 
 export function readFile(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
@@ -28,7 +28,7 @@ export function readFile(inputPath: string, cssLink: string, selectedLang: strin
         process.exit(-1);
     }
 
-    convertToHTML(title, cssLink, body, selectedLang, outputFolder);
+    htmlConversion(title, cssLink, body, selectedLang, outputFolder);
 }
 
 // Body parser functions

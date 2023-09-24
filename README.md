@@ -13,7 +13,6 @@ $ node --version
 $ npm install -g ts-node
 # Note: The -g flag installs the package globally on your machine, and also adds it your system PATH.
 
-
 # Step 4: Clone the repository to your local machine, and install it.
 $ git clone https://github.com/avelynhc/til_tracker.git
 $ cd til_tracker
@@ -193,6 +192,30 @@ examples.html is created successfully!
 ts-node src/index.ts fileName -l language
 ```
 #### Example
+```text
+./examples/test.md
+
+# Heading Level 1
+
+## Heading Level 2
+
+### Heading Level 3
+
+Click this [link]("https://commonmark.org/help/") for more ino!
+
+*Italic* font
+
+**Bold** font as well!
+
+#### Heading Level 4
+
+Should be a paragraph 1
+
+Should be a paragraph 2
+
+Should be a paragraph 3
+```
+
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node .\src\index.ts .\examples\test.md
 Existing folder was successfully removed
@@ -209,15 +232,19 @@ test.html is created successfully!
     <meta charset="utf-8">
     <title>test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
 </head>
 <body>
-<h1>test</h1>
-<p>This is Mr.India's file Beware</p>
-<h1>Heading Level 1</h1>
-<h2>Heading Level 2</h2>
-<h3>Heading Level 3</h3>
-<p>Should be a paragraph</p>
+    <h1>test</h1>
+    <h1>Heading Level 1 </h1>
+    <h2>Heading Level 2</h2>
+    <h3>Heading Level 3</h3>
+    <p>Click this <a href="https://commonmark.org/help/">link</a> for more ino!</p>
+    <p><i>Italic</i> font</p>
+    <p><b>Bold</b> font as well!</p>
+    <h4>Heading Level 4</h4>
+    <p>Should be a paragraph 1</p>
+    <p>Should be a paragraph 2</p>
+    <p>Should be a paragraph 3</p>
 </body>
 </html>
 ```

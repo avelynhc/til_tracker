@@ -9,7 +9,12 @@ $ npm --version
 # Step 2: Ensure that Node is installed on your system. You can check this by using:
 $ node --version
 
-# Step 3: Clone the repository to your local machine, and install it.
+# Step 3: Make sure you have ts-node installed on your system. If not, you can install it globally like so:
+$ npm install -g ts-node
+# Note: The -g flag installs the package globally on your machine, and also adds it your system PATH.
+
+
+# Step 4: Clone the repository to your local machine, and install it.
 $ git clone https://github.com/avelynhc/til_tracker.git
 $ cd til_tracker
 $ npm install

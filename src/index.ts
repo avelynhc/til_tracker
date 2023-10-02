@@ -28,7 +28,7 @@ const argv = yargs
     })
     .option('c', {
         alias: 'config',
-        describe: 'Path to TOML config file',
+        describe: 'Path to .toml config file',
         default: '',
         type: 'string',
         demandOption: false,
@@ -56,12 +56,8 @@ if (argv.config !== '') {
             process.exit(-1);
         }
         const configOptions = TOML.parse(fs.readFileSync(configPath));
-        configOptions.lang ?
-            selectedLang = configOptions.lang :
-            selectedLang = 'en-CA';
-        configOptions.stylesheet ?
-            cssLink = configOptions.stylesheet :
-            cssLink = '';
+        selectedLang = configOptions.lang || 'en-CA';
+        cssLink = configOptions.stylesheet || '';
     } catch (err: any) {
         console.error(err.message);
         process.exit(-1);

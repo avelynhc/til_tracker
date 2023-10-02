@@ -4,6 +4,7 @@ import { SUPPORTED_FILE_EXTENSIONS } from './helper/htmlConversion';
 import { fileHandler } from './helper/fileHandler';
 import { dirHandler } from './helper/dirHandler';
 const yargs = require('yargs');
+const TOML = require('@ltd/j-toml');
 
 // read package.json file
 const appInfo = fs.readFileSync('./package.json', "utf8");
@@ -41,6 +42,31 @@ let cssLink = '';
 if (argv.stylesheet !== '') {
     cssLink = argv.stylesheet;
 }
+let selectedLang: string = argv.lang;
+
+if (argv.config !== '') {
+    try {
+        const configPath: string = path.resolve(argv.config);
+        if (!fs.existsSync(configPath)) {
+            console.error(`${argv.config} does not exist`);
+            process.exit(-1);
+        }
+        if (path.extname(configPath) !== '.toml') {
+            console.error('Config file must be a .toml file');
+            process.exit(-1);
+        }
+        const configOptions = TOML.parse(fs.readFileSync(configPath));
+        configOptions.lang ?
+            selectedLang = configOptions.lang :
+            selectedLang = 'en-CA';
+        configOptions.stylesheet ?
+            cssLink = configOptions.stylesheet :
+            cssLink = '';
+    } catch (err: any) {
+        console.error(err.message);
+        process.exit(-1);
+    }
+} 
 
 // check if outputFolder already exists and remove existing folder for containing the latest output
 const outputFolder = './til';
@@ -55,7 +81,6 @@ console.log('Output folder is successfully created!');
 
 // extract file name and language from argument passed
 const fileName = argv._[0];
-const selectedLang: string = argv.lang;
 fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
         console.error(err);

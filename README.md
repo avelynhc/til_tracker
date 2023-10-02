@@ -29,8 +29,9 @@ $ npm install
 |------------------------------------------------------|---------------------------------------------------|
 | -v, --version                                        | displays app name and version                     |
 | -h, --help                                           | show help                                         |
-| -s, --stylesheet <'URL to a CSS stylesheet'>         | CSS stylesheet to be used in generated HTNL files |
+| -s, --stylesheet <'URL to a CSS stylesheet'>         | CSS stylesheet to be used in generated HTML files |
 | -l, --lang <'language'>                              | language to be used in generated HTML files       |
+| -c, --config <'.toml config file'>                   | path to .toml config file                         |
 
 ### Usage
 #### Check Version of the app

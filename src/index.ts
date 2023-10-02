@@ -25,6 +25,13 @@ const argv = yargs
         type: 'string',
         demandOption: false,
     })
+    .option('c', {
+        alias: 'config',
+        describe: 'Path to TOML config file',
+        default: '',
+        type: 'string',
+        demandOption: false,
+    })
     .alias('h', 'help')
     .alias('v', 'version')
     .version(parsedInfo.name + ' ' + parsedInfo.version)

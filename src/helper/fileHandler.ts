@@ -1,6 +1,7 @@
 import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
 import { htmlConversion, formatHtmlForMarkdownLine } from './htmlConversion';
+import { errorHandling } from '../index';
 let body: string = '';
 
 export function fileHandler(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
@@ -9,7 +10,7 @@ export function fileHandler(inputPath: string, cssLink: string, selectedLang: st
 
     try {
         const data: string = readFileFs.readFileSync(inputPath, 'utf8');
-        
+
         // Check the type of file and parse accordingly
         if (isTextFile(inputPath)) {
             body = parseTextFileContent(data);
@@ -18,12 +19,10 @@ export function fileHandler(inputPath: string, cssLink: string, selectedLang: st
         } else {
             // Reaching this branch is only possible when user provides a file (not folder) as commandline argument.
             // The dirHandler function automatically filters out unsupported files.
-            console.error(`Only text(.txt) and markdown(.md) files are supported! Skipping file ${inputPath}`);
+            errorHandling(`Only text(.txt) and markdown(.md) files are supported! Skipping file ${inputPath}`);
         }
-        
-    } catch (err) {
-        console.error(err);
-        process.exit(-1);
+    } catch (err: any) {
+        errorHandling(err.message);
     }
 
     htmlConversion(title, cssLink, body, selectedLang, outputFolder);
@@ -31,12 +30,7 @@ export function fileHandler(inputPath: string, cssLink: string, selectedLang: st
 
 // Body parser functions
 
-/**
- * Parses the content of a text file
- * 
- * @param content The content that needs to be transformed to HTML markup
- * @returns The transformed content
- */
+// Parses the content of a text file
 function parseTextFileContent(content: string): string {
     return content
         .split(/\r?\n\r?\n/)
@@ -45,12 +39,7 @@ function parseTextFileContent(content: string): string {
         .join('\n');
 }
 
-/**
- * Parses the content of a markdown file
- * 
- * @param content The content that needs to be transformed to HTML markup
- * @returns The transformed content
- */
+// Parses the content of a markdown file
 function parseMarkdownFileContent(content: string): string {
     return content
         .replace(/(\r?\n){1}/, ' ') // Aggregate text at gaps of single newlines

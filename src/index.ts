@@ -38,58 +38,54 @@ const argv = yargs
     .version(parsedInfo.name + ' ' + parsedInfo.version)
     .help().argv;
 
-let cssLink = '';
-if (argv.stylesheet !== '') {
-    cssLink = argv.stylesheet;
-}
+let cssLink: string = '';
+if (argv.stylesheet) cssLink = argv.stylesheet;
 let selectedLang: string = argv.lang;
 
-if (argv.config !== '') {
+export function errorHandling(err: string) {
+    console.error(err);
+    process.exit(-1);
+}
+
+if (argv.config) {
     try {
         const configPath: string = path.resolve(argv.config);
         if (!fs.existsSync(configPath)) {
-            console.error(`${argv.config} does not exist`);
-            process.exit(-1);
+            errorHandling(`${argv.config} does not exist`);
         }
         if (path.extname(configPath) !== '.toml') {
-            console.error('Config file must be a .toml file');
-            process.exit(-1);
+            errorHandling('Config file must be a .toml file');
         }
         const configOptions = TOML.parse(fs.readFileSync(configPath));
         selectedLang = configOptions.lang || 'en-CA';
         cssLink = configOptions.stylesheet || '';
     } catch (err: any) {
-        console.error(err.message);
-        process.exit(-1);
+        errorHandling(err.message);
     }
 } 
 
 // check if outputFolder already exists and remove existing folder for containing the latest output
 const outputFolder = './til';
-if (!fs.existsSync(outputFolder)) {
-    fs.mkdirSync(outputFolder);
-} else {
+if (fs.existsSync(outputFolder)) {
     fs.rmSync(outputFolder, { recursive: true, force: true });
     console.log('Existing folder was successfully removed');
-    fs.mkdirSync(outputFolder);
 }
-console.log('Output folder is successfully created!');
+fs.mkdirSync(outputFolder);
+console.log('Output folder ./til is successfully created');
 
-// extract file name and language from argument passed
+// extract file name
 const fileName = argv._[0];
 fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any; }) => {
     if (err) {
-        console.error(err);
-        process.exit(-1);
+        errorHandling(err.message);
     }
 
-    // check if input is an individual file or directory
+    // check if input is a file or directory
     if (stats.isDirectory()) {
         dirHandler(fileName, cssLink, selectedLang, outputFolder);
     } else if (stats.isFile() && SUPPORTED_FILE_EXTENSIONS.includes(path.extname(fileName))) {
         fileHandler(fileName, cssLink, selectedLang, outputFolder);
     } else {
-        console.error(`Error: Only these file extensions are supported: ${SUPPORTED_FILE_EXTENSIONS}`);
-        process.exit(-1);
+        errorHandling(`Error: Only these file extensions are supported: ${SUPPORTED_FILE_EXTENSIONS}`);
     }
 });

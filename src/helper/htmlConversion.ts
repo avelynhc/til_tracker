@@ -1,5 +1,5 @@
 import * as htmlFs from 'fs';
-import { errorHandling } from '../index';
+import { errorHandling } from '../fileParser';
 
 export const SUPPORTED_FILE_EXTENSIONS = ['.md', '.txt'];
 

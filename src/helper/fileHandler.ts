@@ -1,7 +1,7 @@
 import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
 import { htmlConversion, formatHtmlForMarkdownLine } from './htmlConversion';
-import { errorHandling } from '../index';
+import { errorHandling } from '../fileParser';
 let body: string = '';
 
 export function fileHandler(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {

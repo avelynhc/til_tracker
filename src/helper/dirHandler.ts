@@ -2,7 +2,7 @@ import * as readFolderFs from 'fs';
 import * as readFilePath from 'path';
 import { SUPPORTED_FILE_EXTENSIONS } from './htmlConversion';
 import { fileHandler } from './fileHandler';
-import { errorHandling } from '../index';
+import { errorHandling } from '../fileParser';
 
 export function dirHandler (path: string, cssLink: string, selectedLang: string, outputFolder: string) {
     try {

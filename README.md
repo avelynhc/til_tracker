@@ -339,3 +339,19 @@ examples.html is created successfully!
 </body>
 </html>
 ```
+
+#### You can even specify all of their options in a TOML formatted configuration file
+#### Example
+```sh
+./config.toml
+
+lang = "fr-CA"
+stylesheet = "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+```
+
+```sh
+ ~/WebstormProjects/til_tracker $ src/index.ts examples -c config.toml                                                                                                                           ✔  15:19:08 
+Existing folder was successfully removed
+Output folder ./til is successfully created
+examples1.html is created successfully!
+```

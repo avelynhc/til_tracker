@@ -8,6 +8,7 @@ const yargs = require('yargs');
 // read package.json file
 const appInfo = fs.readFileSync('./package.json', "utf8");
 const parsedInfo = JSON.parse(appInfo);
+const OUTPUT_DIR = './til';
 
 const argv = yargs
     .usage('Usage: $0 <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>] [-l <language-code>]')
@@ -32,7 +33,16 @@ const argv = yargs
 
 let cssLink = '';
 if (argv.stylesheet !== '') {
-    cssLink = argv.stylesheet;
+    if (isURL(argv.stylesheet)) {
+        cssLink = argv.stylesheet;
+    }
+    else {
+        const ouptutDirectory = OUTPUT_DIR;
+        const filePath = argv.stylesheet;
+        const relativePath = path.relative(ouptutDirectory, filePath);
+
+        cssLink = relativePath;
+    }
 }
 
 // check if outputFolder already exists and remove existing folder for containing the latest output
@@ -65,3 +75,8 @@ fs.stat(fileName, (err: any, stats: { isDirectory: () => any; isFile: () => any;
         process.exit(-1);
     }
 });
+
+function isURL(str: string): boolean {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlRegex.test(str);
+}

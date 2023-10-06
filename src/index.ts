@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { parseCommandLindArgs } from "./commandLineParser";
+import { parseCommandLineArgs } from "./commandLineParser";
 import { errorHandling, parseFiles } from "./fileParser";
+import { isURL } from "./helper/check";
 const TOML = require('@ltd/j-toml');
 const OUTPUT_DIR = './til';
 
-const argv = parseCommandLindArgs();
-const OUTPUT_DIR = './til';
+const argv = parseCommandLineArgs();
 
 // extract options from command line arguments
 const fileName = argv._[0];
@@ -17,7 +17,11 @@ if (argv.stylesheet !== '') {
     if (isURL(argv.stylesheet)) {
         cssLink = argv.stylesheet;
     } else {
-        cssLink = path.relative(OUTPUT_DIR, argv.stylesheet);;
+        cssLink = path.relative(OUTPUT_DIR, argv.stylesheet);
+        const cssPath: string = path.resolve(argv.stylesheet);
+        if (!fs.existsSync(cssPath)) {
+            errorHandling(`${cssPath} does not exist`);
+        }
     }
 }
 
@@ -37,10 +41,9 @@ if (argv.config) {
     } catch (err: any) {
         errorHandling(err.message);
     }
-} 
+}
 
 // check if outputFolder already exists and remove existing folder for containing the latest output
-
 if (fs.existsSync(OUTPUT_DIR)) {
     fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
     console.log('Existing folder was successfully removed');
@@ -49,8 +52,3 @@ fs.mkdirSync(OUTPUT_DIR);
 console.log('Output folder ./til is successfully created');
 
 parseFiles(cssLink, selectedLang, OUTPUT_DIR, fileName);
-
-function isURL(str: string): boolean {
-    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-    return urlRegex.test(str);
-}

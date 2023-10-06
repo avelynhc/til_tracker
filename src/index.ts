@@ -13,18 +13,6 @@ const fileName = argv._[0];
 let selectedLang: string = argv.lang;
 let cssLink = '';
 
-if (argv.stylesheet !== '') {
-    if (isURL(argv.stylesheet)) {
-        cssLink = argv.stylesheet;
-    } else {
-        cssLink = path.relative(OUTPUT_DIR, argv.stylesheet);
-        const cssPath: string = path.resolve(argv.stylesheet);
-        if (!fs.existsSync(cssPath)) {
-            errorHandling(`${cssPath} does not exist`);
-        }
-    }
-}
-
 if (argv.config) {
     try {
         const configPath: string = path.resolve(argv.config);

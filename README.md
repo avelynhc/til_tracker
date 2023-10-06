@@ -9,7 +9,11 @@ $ npm --version
 # Step 2: Ensure that Node is installed on your system. You can check this by using:
 $ node --version
 
-# Step 3: Clone the repository to your local machine, and install it.
+# Step 3: Make sure you have ts-node installed on your system. If not, you can install it globally like so:
+$ npm install -g ts-node
+# Note: The -g flag installs the package globally on your machine, and also adds it your system PATH.
+
+# Step 4: Clone the repository to your local machine, and install it.
 $ git clone https://github.com/avelynhc/til_tracker.git
 $ cd til_tracker
 $ npm install
@@ -25,8 +29,9 @@ $ npm install
 |------------------------------------------------------|---------------------------------------------------|
 | -v, --version                                        | displays app name and version                     |
 | -h, --help                                           | show help                                         |
-| -s, --stylesheet <'URL to a CSS stylesheet'>         | CSS stylesheet to be used in generated HTNL files |
+| -s, --stylesheet <'URL to a CSS stylesheet'>         | CSS stylesheet to be used in generated HTML files |
 | -l, --lang <'language'>                              | language to be used in generated HTML files       |
+| -c, --config <'.toml config file'>                   | path to .toml config file                         |
 
 ### Usage
 #### Check Version of the app
@@ -188,6 +193,30 @@ examples.html is created successfully!
 ts-node src/index.ts fileName -l language
 ```
 #### Example
+```text
+./examples/test.md
+
+# Heading Level 1
+
+## Heading Level 2
+
+### Heading Level 3
+
+Click this [link]("https://commonmark.org/help/") for more ino!
+
+*Italic* font
+
+**Bold** font as well!
+
+#### Heading Level 4
+
+Should be a paragraph 1
+
+Should be a paragraph 2
+
+Should be a paragraph 3
+```
+
 ```sh
 ~/WebstormProjects/til_tracker $ ts-node .\src\index.ts .\examples\test.md
 Existing folder was successfully removed
@@ -204,15 +233,19 @@ test.html is created successfully!
     <meta charset="utf-8">
     <title>test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
 </head>
 <body>
-<h1>test</h1>
-<p>This is Mr.India's file Beware</p>
-<h1>Heading Level 1</h1>
-<h2>Heading Level 2</h2>
-<h3>Heading Level 3</h3>
-<p>Should be a paragraph</p>
+    <h1>test</h1>
+    <h1>Heading Level 1 </h1>
+    <h2>Heading Level 2</h2>
+    <h3>Heading Level 3</h3>
+    <p>Click this <a href="https://commonmark.org/help/">link</a> for more ino!</p>
+    <p><i>Italic</i> font</p>
+    <p><b>Bold</b> font as well!</p>
+    <h4>Heading Level 4</h4>
+    <p>Should be a paragraph 1</p>
+    <p>Should be a paragraph 2</p>
+    <p>Should be a paragraph 3</p>
 </body>
 </html>
 ```
@@ -305,4 +338,20 @@ examples.html is created successfully!
     <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
+```
+
+#### You can even specify all of their options in a TOML formatted configuration file
+#### Example
+```sh
+./config.toml
+
+lang = "fr-CA"
+stylesheet = "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+```
+
+```sh
+ ~/WebstormProjects/til_tracker $ src/index.ts examples -c config.toml                                                                                                                           ✔  15:19:08 
+Existing folder was successfully removed
+Output folder ./til is successfully created
+examples1.html is created successfully!
 ```

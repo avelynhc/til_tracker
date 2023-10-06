@@ -2,6 +2,7 @@ import * as readFileFs from 'fs';
 import * as readFilePath from 'path';
 import { htmlConversion, formatHtmlForMarkdownLine } from './htmlConversion';
 import { errorHandling } from '../fileParser';
+import { isMarkdownFile, isTextFile } from "./check";
 let body: string = '';
 
 export function fileHandler(inputPath: string, cssLink: string, selectedLang: string, outputFolder: string) {
@@ -29,7 +30,6 @@ export function fileHandler(inputPath: string, cssLink: string, selectedLang: st
 }
 
 // Body parser functions
-
 // Parses the content of a text file
 function parseTextFileContent(content: string): string {
     return content
@@ -49,13 +49,4 @@ function parseMarkdownFileContent(content: string): string {
             return formatHtmlForMarkdownLine(line)
         })
         .join('\n'); // Join all the generated tags
-}
-
-// General file queries
-function isTextFile(filename: string): boolean {
-    return readFilePath.extname(filename) === '.txt';
-}
-
-function isMarkdownFile(filename: string): boolean {
-    return readFilePath.extname(filename) === '.md';
 }

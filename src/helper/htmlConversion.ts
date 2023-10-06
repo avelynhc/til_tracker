@@ -1,6 +1,5 @@
 import * as htmlFs from 'fs';
 import { errorHandling } from '../fileParser';
-
 export const SUPPORTED_FILE_EXTENSIONS = ['.md', '.txt'];
 
 export function htmlConversion(title: string, cssLink: string, body: string, selectedLang: string, outputFolder: string) {

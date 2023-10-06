@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 const yargs = require('yargs');
 
-export function parseCommandLindArgs() {
+export function parseCommandLineArgs() {
     // read package.json file
     const appInfo = fs.readFileSync('./package.json', "utf8");
     const parsedInfo = JSON.parse(appInfo);

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {parseCommandLindArgs} from "./commandLineParser";
-import {errorHandling, parseFiles} from "./fileParser";
+import { parseCommandLindArgs } from "./commandLineParser";
+import { errorHandling, parseFiles } from "./fileParser";
 const TOML = require('@ltd/j-toml');
 
 const argv = parseCommandLindArgs();
@@ -15,13 +15,8 @@ let cssLink = '';
 if (argv.stylesheet !== '') {
     if (isURL(argv.stylesheet)) {
         cssLink = argv.stylesheet;
-    }
-    else {
-        const ouptutDirectory = OUTPUT_DIR;
-        const filePath = argv.stylesheet;
-        const relativePath = path.relative(ouptutDirectory, filePath);
-
-        cssLink = relativePath;
+    } else {
+        cssLink = path.relative(OUTPUT_DIR, argv.stylesheet);;
     }
 }
 
@@ -51,3 +46,8 @@ fs.mkdirSync(OUTPUT_DIR);
 console.log('Output folder ./til is successfully created');
 
 parseFiles(cssLink, selectedLang, OUTPUT_DIR, fileName);
+
+function isURL(str: string): boolean {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlRegex.test(str);
+}

@@ -80,9 +80,7 @@ examples.html is created successfully!
 <body>
     <h1>examples</h1>
     <p>This is the first paragraph of examples.txt.</p>
-    
     <p>This is the second paragraph of examples.txt.</p>
-    
     <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
@@ -130,7 +128,6 @@ test2.html is created successfully!
 <body>
     <h1>test1</h1>  
     <p>This is the test1 txt file of examples folder.</p>
-    
     <p>This is the test1 txt file of examples folder.</p>
 </body>
 </html>
@@ -149,7 +146,6 @@ test2.html is created successfully!
 <body>
     <h1>test2</h1>
     <p>This is the test2 txt file of examples folder.</p>
-    
     <p>This is the test2 txt file of examples folder.</p>
 </body>
 </html>
@@ -180,9 +176,7 @@ examples.html is created successfully!
 <body>
     <h1>examples</h1>
     <p>This is the first paragraph of examples.txt.</p>
-    
     <p>This is the second paragraph of examples.txt.</p>
-    
     <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
@@ -277,7 +271,6 @@ test2.html is created successfully!
 <body>
     <h1>test1</h1>
     <p>This is the test1 txt file of examples folder.</p>
-    
     <p>This is the test1 txt file of examples folder.</p>
 </body>
 </html>
@@ -297,7 +290,6 @@ test2.html is created successfully!
     <body>
     <h1>test2</h1>
     <p>This is the test2 txt file of examples folder.</p>
-    
     <p>This is the test2 txt file of examples folder.</p>
 </body>
 </html>
@@ -306,9 +298,11 @@ test2.html is created successfully!
 Note: Even if a file and a folder share the same name, you will still be able to obtain the desired result. 
 Since folders do not have file extensions, there is no confusion between the folder and the file.
 
-#### Specify stylesheet URL to a CSS stylesheet to be used in the <head> of generated HTML files
+#### Specify stylesheet URL or relative path to a CSS stylesheet to be used in the <head> of generated HTML files
 ```
-ts-node src/index.ts fileName.txt -s stylesheetURL
+$ ts-node src/index.ts fileName.txt -s stylesheetURL
+or 
+$ ts-node src/index.ts fileName.txt -s <relative-path-to-css-file>
 ```
 #### Example
 ```sh
@@ -319,7 +313,7 @@ examples.html is created successfully!
 ```
 
 ```html
-./til/test.html
+./til/examples.html
 
 <!doctype html>
 <html lang="en-CA">
@@ -332,12 +326,28 @@ examples.html is created successfully!
 <body>
     <h1>examples</h1>
     <p>This is the first paragraph of examples.txt.</p>
-    
     <p>This is the second paragraph of examples.txt.</p>
-    
     <p>This is the third paragraph of examples.txt.</p>
 </body>
 </html>
+```
+
+```sh
+~/WebstormProjects/til_tracker $ ts-node src/index.ts examples1.md -s examples/styles/test.css
+Existing folder was successfully removed
+Output folder ./til is successfully created
+examples1.html is created successfully!
+```
+
+```html
+./til/examples1.html
+
+<!doctype html>
+<html lang="en-CA">
+<head>
+    ...
+    <link rel="stylesheet" href="../examples/styles/test.css">
+...
 ```
 
 #### You can even specify all of their options in a TOML formatted configuration file

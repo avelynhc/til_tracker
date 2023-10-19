@@ -20,6 +20,7 @@
   "homepage": "https://github.com/avelynhc/til_tracker#readme",
   "dependencies": {
     "@ltd/j-toml": "^1.38.0",
+    "showdown": "^2.1.0",
     "ts-node": "^10.9.1",
     "yargs": "^17.7.2"
   },

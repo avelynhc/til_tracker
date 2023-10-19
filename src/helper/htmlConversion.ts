@@ -1,6 +1,6 @@
-import * as htmlFs from 'fs';
-import { errorHandling } from '../fileParser';
-export const SUPPORTED_FILE_EXTENSIONS = ['.md', '.txt'];
+const fs = require('fs');
+const { errorHandling } = require('../fileParser');
+export const SUPPORTED_FILE_EXTENSIONS: string[] = ['.md', '.txt'];
 
 export function htmlConversion(title: string, cssLink: string, body: string, selectedLang: string, outputFolder: string) {
     const result:string = `<!doctype html>
@@ -21,7 +21,7 @@ ${body}
 </body>
 </html>`;
 
-    htmlFs.writeFile(`${outputFolder}/${title}.html`, result, function (err: any) {
+    fs.writeFile(`${outputFolder}/${title}.html`, result, function (err: any) {
         if (err) {
             errorHandling(err.message);
         }

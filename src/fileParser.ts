@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { SUPPORTED_FILE_EXTENSIONS } from './helper/htmlConversion';
-import { fileHandler } from './helper/fileHandler';
-import { dirHandler } from './helper/dirHandler';
+const fs = require('fs');
+const path = require('path');
+const { SUPPORTED_FILE_EXTENSIONS } = require('./helper/htmlConversion');
+const { fileHandler } = require('./helper/fileHandler');
+const { dirHandler } = require('./helper/dirHandler');
 
 export function errorHandling(err: string) {
     console.error(err);

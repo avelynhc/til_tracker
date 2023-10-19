@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+const fs = require('fs');
 const yargs = require('yargs');
 
 export function parseCommandLineArgs() {

@@ -1,4 +1,4 @@
-import * as readFilePath from 'path';
+const path = require('path');
 
 export function isURL(str: string): boolean {
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
@@ -6,9 +6,9 @@ export function isURL(str: string): boolean {
 }
 
 export function isTextFile(filename: string): boolean {
-    return readFilePath.extname(filename) === '.txt';
+    return path.extname(filename) === '.txt';
 }
 
 export function isMarkdownFile(filename: string): boolean {
-    return readFilePath.extname(filename) === '.md';
+    return path.extname(filename) === '.md';
 }

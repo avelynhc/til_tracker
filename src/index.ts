@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { parseCommandLineArgs } from "./commandLineParser";
-import { errorHandling, parseFiles } from "./fileParser";
-import { isURL } from "./helper/check";
+const fs = require('fs');
+const path = require('path');
+const { parseCommandLineArgs } = require('./commandLineParser');
+const { errorHandling, parseFiles } = require('./fileParser');
+const { isURL }  = require('./helper/check');
 const TOML = require('@ltd/j-toml');
 const OUTPUT_DIR = './til';
 

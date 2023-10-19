@@ -1,10 +1,10 @@
-import * as readFileFs from 'fs';
-import * as readFilePath from 'path';
-import { htmlConversion } from './htmlConversion';
-import { errorHandling } from '../fileParser';
-import { isMarkdownFile, isTextFile } from "./check";
-
+const readFileFs = require('fs')
+const readFilePath = require('path');
+const { htmlConversion } = require('./htmlConversion');
+const { errorHandling } = require('../fileParser');
+const { isMarkdownFile, isTextFile } = require('./check');
 const showdown = require('showdown');
+
 const converter = new showdown.Converter()
 let body: string = '';
 

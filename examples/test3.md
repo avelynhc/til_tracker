@@ -17,3 +17,13 @@ Should be a paragraph 1
 Should be a paragraph 2
 
 Should be a paragraph 3
+
+---
+
+> this is a block quote
+
+```typescript
+for(let i:number=0; i<nums.length; i++) {
+    console.log(nums[i]);
+}
+```

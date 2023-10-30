@@ -1,36 +1,38 @@
-const fs = require('fs');
-const yargs = require('yargs');
+import fs = require('fs');
+import yargs = require('yargs');
 
 export function parseCommandLineArgs() {
-    // read package.json file
-    const appInfo = fs.readFileSync('./package.json', "utf8");
-    const parsedInfo = JSON.parse(appInfo);
+  // read package.json file
+  const appInfo: string = fs.readFileSync('./package.json', 'utf8');
+  const parsedInfo = JSON.parse(appInfo);
 
-    return yargs
-        .usage('Usage: $0 <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>] [-l <language-code>]')
-        .option('s', {
-            alias: 'stylesheet',
-            describe: 'Optional CSS Link',
-            default: '',
-            type: 'string',
-            demandOption: false,
-        })
-        .option('l', {
-            alias: 'lang',
-            describe: 'Language used in generated file',
-            default: 'en-CA',
-            type: 'string',
-            demandOption: false,
-        })
-        .option('c', {
-            alias: 'config',
-            describe: 'Path to .toml config file',
-            default: '',
-            type: 'string',
-            demandOption: false,
-        })
-        .alias('h', 'help')
-        .alias('v', 'version')
-        .version(parsedInfo.name + ' ' + parsedInfo.version)
-        .help().argv;
+  return yargs
+    .usage(
+      'Usage: $0 <txtFilename> or <folderContainingTxtFiles>  [-s <css-link>] [-l <language-code>]'
+    )
+    .option('s', {
+      alias: 'stylesheet',
+      describe: 'Optional CSS Link',
+      default: '',
+      type: 'string',
+      demandOption: false,
+    })
+    .option('l', {
+      alias: 'lang',
+      describe: 'Language used in generated file',
+      default: 'en-CA',
+      type: 'string',
+      demandOption: false,
+    })
+    .option('c', {
+      alias: 'config',
+      describe: 'Path to .toml config file',
+      default: '',
+      type: 'string',
+      demandOption: false,
+    })
+    .alias('h', 'help')
+    .alias('v', 'version')
+    .version(parsedInfo.name + ' ' + parsedInfo.version)
+    .help().argv;
 }

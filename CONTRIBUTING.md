@@ -137,3 +137,21 @@ On Window, press `Ctrl + Shift + P`
 
 Step 2. Type `settings.json` and press Enter
 Step 3. Add `.vscode/settings.json` to your local VS Code
+
+#### Unit Test
+
+### How to run a single test or test file
+
+`$ npm run test <test-file-name>`
+
+### How to have test runner watch for changes and run tests automatically when the test or source code is updated
+
+`$ npm run test:watch`
+
+### How to check the code coverage?
+
+`$ npm run coverage`
+
+### How to organize unit tests?
+
+Please put all the unit tests in `tests/unit`

@@ -3,4 +3,15 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   root: true,
+  env: {
+    browser: true,
+    es6: true,
+    jest: true,
+    node: true,
+  },
+  overrides: [
+    {
+      files: ['**/*.tsx'],
+    },
+  ],
 };

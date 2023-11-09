@@ -6,7 +6,7 @@ import { dirHandler } from './helper/dirHandler';
 
 export function errorHandling(err: string) {
   console.error(err);
-  process.exit(-1);
+  return;
 }
 
 export function parseFiles(
@@ -18,6 +18,7 @@ export function parseFiles(
   fs.stat(fileName, (err, stats) => {
     if (err) {
       errorHandling(err.message);
+      return;
     }
 
     // check if input is a file or directory

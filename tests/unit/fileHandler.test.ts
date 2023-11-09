@@ -1,5 +1,17 @@
 import { fileHandler } from '../../src/helper/fileHandler';
 
+let consoleLogMock: jest.SpyInstance;
+let consoleErrorMock: jest.SpyInstance;
+beforeAll(() => {
+  consoleLogMock = jest.spyOn(console, 'log').mockImplementation(() => {});
+  consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  consoleLogMock.mockRestore();
+  consoleErrorMock.mockRestore();
+});
+
 describe('file handler', () => {
   test('fileHandler() should be able to handle text file', () => {
     const consoleLogMock = jest.spyOn(console, 'log').mockImplementation(() => {});
@@ -31,7 +43,6 @@ describe('file handler', () => {
 
   test('should log the error and exit the process when given file is not not supported', async () => {
     const consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation(() => undefined as never);
 
     await new Promise((resolve) => {
       fileHandler(
@@ -46,25 +57,6 @@ describe('file handler', () => {
     expect(consoleErrorMock).toHaveBeenCalledWith(
       `Only text(.txt) and markdown(.md) files are supported! Skipping file examples/text4.html`
     );
-    expect(exitMock).toHaveBeenCalledWith(-1);
     consoleErrorMock.mockRestore();
-    exitMock.mockRestore();
-  });
-
-  test('should log the error and exit the process when given file does not exist', async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation(() => undefined as never);
-
-    await new Promise((resolve) => {
-      fileHandler(
-        'examples/non-exist-file.txt',
-        'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css',
-        'fr-CA',
-        './til'
-      );
-      setTimeout(resolve, 100);
-    });
-
-    expect(exitMock).toHaveBeenCalledWith(-1);
-    exitMock.mockRestore();
   });
 });

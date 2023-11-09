@@ -14,6 +14,7 @@ export function dirHandler(
     fs.readdir(path, (err, files) => {
       if (err) {
         errorHandling(err.message);
+        return;
       }
 
       // filter to only get the files with supported file extension

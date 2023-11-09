@@ -1,5 +1,17 @@
 import { parseFiles } from '../../src/fileParser';
 
+let consoleLogMock: jest.SpyInstance;
+let consoleErrorMock: jest.SpyInstance;
+beforeAll(() => {
+  consoleLogMock = jest.spyOn(console, 'log').mockImplementation(() => {});
+  consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  consoleLogMock.mockRestore();
+  consoleErrorMock.mockRestore();
+});
+
 describe('file parser', () => {
   test('fileParser() should be able to handle file', async () => {
     const consoleLogMock = jest.spyOn(console, 'log').mockImplementation(() => {});
@@ -33,8 +45,8 @@ describe('file parser', () => {
     consoleLogMock.mockRestore();
   });
 
-  test('fileParser() should be able to handle error', async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation(() => undefined as never);
+  test('fileParser() should be able to handle error when given file is not supported', async () => {
+    const consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     await new Promise((resolve) => {
       parseFiles(
@@ -45,7 +57,29 @@ describe('file parser', () => {
       );
       setTimeout(resolve, 100);
     });
-    expect(exitMock).toHaveBeenCalledWith(-1);
-    exitMock.mockRestore();
+
+    expect(consoleErrorMock).toHaveBeenCalledWith(
+      'Error: Only these file extensions are supported: .md,.txt'
+    );
+    consoleErrorMock.mockRestore();
+  });
+
+  test('fileParser() should be able to handle error when given file name does not exist', async () => {
+    const consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await new Promise((resolve) => {
+      parseFiles(
+        'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css',
+        'fr-CA',
+        './til',
+        'examples/empty.txt'
+      );
+      setTimeout(resolve, 100);
+    });
+
+    expect(consoleErrorMock).toHaveBeenCalledWith(
+      "ENOENT: no such file or directory, stat 'examples/empty.txt'"
+    );
+    consoleErrorMock.mockRestore();
   });
 });

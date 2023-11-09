@@ -1,4 +1,5 @@
 import { parseFiles } from '../../src/fileParser';
+const unusedVariable: string;
 
 let consoleLogMock: jest.SpyInstance;
 let consoleErrorMock: jest.SpyInstance;

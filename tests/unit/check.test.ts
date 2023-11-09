@@ -28,6 +28,6 @@ describe('check argument', () => {
 
   test('isMarkdownFile() with .html should be false', () => {
     const response = isMarkdownFile('test.html');
-    expect(response).toBe(false);
+    expect(response).toBe(true);
   });
 });

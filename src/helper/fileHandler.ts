@@ -31,9 +31,11 @@ export function fileHandler(
       errorHandling(
         `Only text(.txt) and markdown(.md) files are supported! Skipping file ${inputPath}`
       );
+      return;
     }
   } catch (err) {
     errorHandling(err as string);
+    return;
   }
 
   htmlConversion(title, cssLink, body, selectedLang, outputFolder);

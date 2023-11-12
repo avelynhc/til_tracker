@@ -46,7 +46,7 @@ describe('file handler', () => {
 
     await new Promise((resolve) => {
       fileHandler(
-        'examples/text4.html',
+        'examples/test4.html',
         'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css',
         'fr-CA',
         './til'
@@ -55,7 +55,7 @@ describe('file handler', () => {
     });
 
     expect(consoleErrorMock).toHaveBeenCalledWith(
-      `Only text(.txt) and markdown(.md) files are supported! Skipping file examples/text4.html`
+      `Only text(.txt) and markdown(.md) files are supported! Skipping file examples/test4.html`
     );
     consoleErrorMock.mockRestore();
   });

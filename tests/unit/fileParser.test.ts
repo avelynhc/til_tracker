@@ -53,7 +53,7 @@ describe('file parser', () => {
         'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css',
         'fr-CA',
         './til',
-        'examples/text4.html'
+        'examples/test4.html'
       );
       setTimeout(resolve, 100);
     });

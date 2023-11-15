@@ -1,6 +1,6 @@
 {
   "name": "til_tracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Command-line tool processing input .txt files into generated .html files.",
   "main": "index.js",
   "scripts": {

@@ -1,0 +1,17 @@
+name: cd
+
+on:
+  push:
+    tags:
+      - 'v**'
+
+jobs:
+  npm:
+    name: NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Publish to NPM
+        run: npm publish

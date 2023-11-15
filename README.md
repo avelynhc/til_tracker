@@ -8,6 +8,19 @@ Command-line tool written in Typescript processing input .txt files into generat
 - If the input is a .txt or a .md file, it should process that file.
 - If it's a directory, it will look for and find all .txt and .md files within that folder, processing each one.
 
+### Download && Install til_tracker
+```shell
+$ npm i til_tracker
+
+// go to the root directory of the til_tracker
+$ cd node_modules/til_tracker
+
+// install ts-node globally if you do not have it already
+$ npm install -g ts-node   
+
+// now you can start using the til_tracker
+```
+
 ### Argument Options
 
 | Option                                       | Responsibility                                    |
